@@ -1,5 +1,11 @@
 from graph import create_graph, State
 import graphviz
+import os
+
+OUTPUT_DIR_NAME = "vizualization"
+
+def create_output_path(file_name: str) -> str:
+    return os.path.join(os.path.dirname(__file__), OUTPUT_DIR_NAME, file_name)
 
 def visualize_graph(graph: dict[State, dict[int, State]], output_file: str = "graph"):
     """
@@ -10,8 +16,7 @@ def visualize_graph(graph: dict[State, dict[int, State]], output_file: str = "gr
         output_file (str): The name of the output file (without extension).
     """
     dot = graphviz.Digraph(format="png")
-    # dot.attr(rankdir="UD")  # Left-to-right layout
-    dot.attr(layout="dot")  # Use dot layout engine
+    dot.attr(layout="circo")  # Use circo layout engine
 
     # Add nodes and edges
     for state, transitions in graph.items():
@@ -28,7 +33,7 @@ if __name__ == "__main__":
     graph = create_graph()
 
     # Visualize the graph
-    visualize_graph(graph, output_file="state_transition_graph_dot")
+    visualize_graph(graph, output_file=create_output_path("state_transition_graph_circo"))
 
     for state, transitions in graph.items():
         for transition, next_state in transitions.items():

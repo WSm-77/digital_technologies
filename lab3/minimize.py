@@ -1,6 +1,12 @@
 from graph import create_graph, State
 import logicmin
 import csv
+import os
+
+OUTPUT_DIR_NAME = "truth_table"
+
+def create_output_path(file_name: str) -> str:
+    return os.path.join(os.path.dirname(__file__), OUTPUT_DIR_NAME, file_name)
 
 def get_states_transition_table(graph: dict[State, dict[int, State]]) -> tuple[list[str], list[str]]:
     states_inputs = []
@@ -38,7 +44,7 @@ if __name__ == "__main__":
 
     minimize_table(states_inputs, next_states, states_inputs_names, next_states_names)
 
-    with open("truth_table_state_transitions.csv", mode="w", newline="") as file:
+    with open(create_output_path("truth_table_state_transitions.csv"), mode="w", newline="") as file:
         csv_writer = csv.writer(file, delimiter=",")
         csv_writer.writerow(states_inputs_names + next_states_names)
         for state_input, next_state in zip(states_inputs, next_states):
@@ -51,7 +57,7 @@ if __name__ == "__main__":
     print("\nOutput values table minimalization:\n")
     minimize_table(states, outputs, states_inputs_names[:4], output_names)
 
-    with open("truth_table_output.csv", mode="w", newline="") as file:
+    with open(create_output_path("truth_table_output.csv"), mode="w", newline="") as file:
         csv_writer = csv.writer(file, delimiter=",")
         csv_writer.writerow(states_inputs_names[:4] + output_names)
         for state_input in states_inputs:

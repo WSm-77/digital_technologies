@@ -48,9 +48,6 @@ class State:
             is_playing_property = value & 0b1
         )
 
-# def get_bit(state: int, bit: int) -> int:
-#     return (state >> bit) & 1
-
 def create_graph():
     states_val = [val for val in range(2 ** 4)]
 
