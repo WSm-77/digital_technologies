@@ -33,10 +33,10 @@ def minimize_table(variables: list[str], outputs: list[str], variables_names: li
     # print(solution.printN(states_inputs_names, next_states_names))
 
 if __name__ == "__main__":
-    # states_inputs_names = ["Music1", "Music2", "Transition", "IsPlaying", "Previous", "Next", "Pause", "Play"]
-    states_inputs_names = ["M1", "M2", "T", "P", "<|", "|>", "||", ">"]
-    # next_states_names = ["NextMusic1", "NextMusic2", "NextTransition", "NextIsPlaying"]
-    next_states_names = ["NM1", "NM2", "NT", "NP"]
+    # states_inputs_names = ["Music2", "Music1", "Transition", "IsPlaying", "Previous", "Next", "Pause", "Play"]
+    states_inputs_names = ["M2", "M1", "T", "P", "<|", "|>", "||", ">"]
+    # next_states_names = ["NextMusic2", "NextMusic1", "NextTransition", "NextIsPlaying"]
+    next_states_names = ["NM2", "NM1", "NT", "NP"]
     graph = create_graph()
     states_inputs, next_states = get_states_transition_table(graph)
 
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         for state_input, next_state in zip(states_inputs, next_states):
             csv_writer.writerow(list(map(int, state_input + next_state)))
 
-    output_names = ["NM1", "NM2", "NP"]
+    output_names = ["NM2", "NM1", "NP"]
     states = [state[:4] for state in states_inputs]
     outputs = [state[:2] + state[3] for state in states_inputs]
 
