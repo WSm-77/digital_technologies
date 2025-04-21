@@ -16,7 +16,7 @@ class TestTransitions:
         for song_no in range(SONGS_COUNT):
             for transition in range(2):
                 for is_playing in range(2):
-                    for transition_type in [TRANSITION_NEXT, TRANSITION_PREVIOUS, RESUME, PAUSE, NO_CLICK]:
+                    for transition_type in range(2 ** 4):
                         curr_state = State(
                             song_no = song_no,
                             is_transition_property=transition,
@@ -24,7 +24,8 @@ class TestTransitions:
                         )
 
                         if transition_type not in graph[curr_state]:
-                            continue
+                            print(f"Transition {curr_state} -> {transition_type:04b} is not valid")
+                        #     continue
 
                         checked_states_cnt += 1
 

@@ -72,6 +72,16 @@ def create_graph():
                 is_transition_property = 0,
                 is_playing_property = state.is_playing()
             )
+            graph[state][RESUME] = State(
+                song_no = state.get_song_number(),
+                is_transition_property = 0,
+                is_playing_property = 1
+            )
+            graph[state][PAUSE] = State(
+                song_no = state.get_song_number(),
+                is_transition_property = 0,
+                is_playing_property = 0
+            )
         else:
             graph[state][TRANSITION_NEXT] = State(
                 song_no = (state.get_song_number() + 1) % SONGS_COUNT,
