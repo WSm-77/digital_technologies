@@ -23,10 +23,6 @@ class TestTransitions:
                             is_playing_property=is_playing
                         )
 
-                        if transition_type not in graph[curr_state]:
-                            print(f"Transition {curr_state} -> {transition_type:04b} is not valid")
-                        #     continue
-
                         checked_states_cnt += 1
 
                         music1 = get_bit(song_no, 0)
