@@ -4,18 +4,23 @@ def parse_input(user_input):
     running = True
     previous, next, pause, play = 0, 0, 0, 0
 
-    if user_input == "exit":
-        running = False
-    elif user_input == "previous":
-        previous = 1
-    elif user_input == "next":
-        next = 1
-    elif user_input == "pause":
-        pause = 1
-    elif user_input == "play":
-        play = 1
-    elif user_input != "no click":
-        raise Exception("Invalid input. Please enter 'previous', 'next', 'pause', 'play' or 'no click'.")
+    # if user_input == "exit":
+    #     running = False
+    # elif user_input == "previous":
+    #     previous = 1
+    # elif user_input == "next":
+    #     next = 1
+    # elif user_input == "pause":
+    #     pause = 1
+    # elif user_input == "play":
+    #     play = 1
+    # elif user_input != "no click":
+    #     raise Exception("Invalid input. Please enter 'previous', 'next', 'pause', 'play' or 'no click'.")
+
+    previous = int(user_input[0])
+    next = int(user_input[1])
+    pause = int(user_input[2])
+    play = int(user_input[3])
 
     return previous, next, pause, play, running
 

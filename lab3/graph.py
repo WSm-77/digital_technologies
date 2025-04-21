@@ -7,6 +7,9 @@ RESUME = 0b0001
 PAUSE = 0b0010
 NO_CLICK = 0b0000
 
+valid_inputs = set([TRANSITION_NEXT, TRANSITION_PREVIOUS, RESUME, PAUSE, NO_CLICK])
+invalid_inputs = set([i for i in range(2 ** 4)]) - valid_inputs
+
 class State:
     def __init__(self, song_no: int, is_transition_property: int, is_playing_property: int):
         self.song_no = song_no
@@ -47,6 +50,12 @@ class State:
             is_transition_property = (value >> 1) & 0b1,
             is_playing_property = value & 0b1
         )
+
+BASE_STATE = State(
+    song_no=0,
+    is_transition_property=0,
+    is_playing_property=0
+)
 
 def create_graph():
     states_val = [val for val in range(2 ** 4)]
@@ -91,6 +100,9 @@ def create_graph():
                 is_transition_property = 0,
                 is_playing_property = 0
             )
+
+        for invalid_input in invalid_inputs:
+            graph[state][invalid_input] = BASE_STATE
 
     return graph
 

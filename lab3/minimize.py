@@ -33,10 +33,10 @@ def minimize_table(variables: list[str], outputs: list[str], variables_names: li
     # print(solution.printN(states_inputs_names, next_states_names))
 
 if __name__ == "__main__":
-    # states_inputs_names = ["Music2", "Music1", "Transition", "IsPlaying", "Previous", "Next", "Pause", "Play"]
-    states_inputs_names = ["M2", "M1", "T", "P", "<|", "|>", "||", ">"]
-    # next_states_names = ["NextMusic2", "NextMusic1", "NextTransition", "NextIsPlaying"]
-    next_states_names = ["NM2", "NM1", "NT", "NP"]
+    states_inputs_names = ["music2", "music1", "transition", "is_playing", "previous", "next", "pause", "play"]
+    # states_inputs_names = ["M2", "M1", "T", "P", "<|", "|>", "||", ">"]
+    next_states_names = ["next_music2", "next_music1", "next_transition", "next_is_playing"]
+    # next_states_names = ["NM2", "NM1", "NT", "NP"]
     graph = create_graph()
     states_inputs, next_states = get_states_transition_table(graph)
 
@@ -55,6 +55,7 @@ if __name__ == "__main__":
     outputs = [state[:2] + state[3] for state in states_inputs]
 
     print("\nOutput values table minimalization:\n")
+
     minimize_table(states, outputs, states_inputs_names[:4], output_names)
 
     with open(create_output_path("truth_table_output.csv"), mode="w", newline="") as file:
